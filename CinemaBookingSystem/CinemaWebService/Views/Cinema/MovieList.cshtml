@@ -1,0 +1,74 @@
+﻿@{
+	ViewData["Title"] = "Movie List";
+}
+
+@model CinemaWebService.Views.ViewModels.ListVM
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/movieList.css" />
+}
+
+<div class="main-content" id="movie-list-content">
+	<div class="moviefilter">
+		<h1 class="city-title">Welcome to @Model.CityName!</h1>
+		<h2 class="movie-filter-title">Movie filter</h2>
+		<div class="filters">
+			<form method="Get" asp-controller="Cinema" asp-action="MovieList" asp-route-city="@Model.CityName">
+				<select name="genre" class="filter" id="movieFilter">
+					<option value="">-- Choose genre --</option>
+					@foreach(var genre in Model.Genres)
+					{
+						<option value="@genre">@genre</option>
+					}
+				</select>
+
+				<select name="language" class="filter">
+					<option value="">-- Choose language --</option>
+					@foreach(var language in Model.Languages)
+					{
+						<option value="@language">@language</option>
+					}
+				</select>
+
+				<select name="age" class="filter">
+					<option value="">-- Choose age --</option>
+					<option value="6">PG 6</option>
+					<option value="13">PG 13</option>
+					<option value="15">PG 15</option>
+					<option value="18">PG 18</option>
+				</select>
+				<button type="reset" class="resetFilter">Reset filters</button>
+				<input type="submit" />
+			</form>
+		</div>
+	</div>
+
+	<div class="moviesContainer">
+		@if (Model.Movies != null && Model.Movies.Any())
+		{
+			foreach (var movie in Model.Movies)
+			{
+				<article class="moviesChild">
+					<a asp-controller="Cinema" asp-action="Movies" asp-route-movieID="@movie.Key.MovieID" asp-route-city="@Model.CityName">
+						@if (movie.Value.Any())
+						{
+							<img src="@movie.Value.First()" />
+						} 
+						else
+						{
+							<img src="https://www.recordpusher.com/cdn/shop/products/movieposter.jpg?v=1571438564" />
+						}
+						<p>@movie.Key.Title</p>
+					</a>
+				</article>
+			}
+		}
+		else
+		{
+			<div class="no-content-wrapper">
+				<h2 class="no-content-text">No movies available.</h2>
+			</div>
+		}
+
+	</div>
+</div>

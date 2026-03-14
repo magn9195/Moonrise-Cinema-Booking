@@ -1,0 +1,120 @@
+﻿@{
+	ViewData["Title"] = "Movie Order";
+}
+
+@model CinemaWebService.Views.ViewModels.OrderVM
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/movieOrder.css" />
+}
+
+@section Scripts {
+	<script>
+		const expirationTime = @ViewBag.ExpirationTimeMs;
+		console.log("Current time:", new Date().getTime());
+	</script>
+	<script src="~/js/OrderLogic.js"></script>
+}
+
+
+<div class="container-fluid">
+	<div class="main-content">
+		<div class="movie-section">
+			<div class="movie-image" id="img-order-page">
+				@if (Model.ShowtimeDetails.ImageURLs != null && Model.ShowtimeDetails.ImageURLs.Any())
+				{
+					<img class="poster image" id="movie-IMG-order" src="@Model.ShowtimeDetails.ImageURLs.First()" />
+				}
+				else
+				{
+					<div class="poster placeholder">Movie IMG</div>
+				}
+			</div>
+
+
+			<div class="detail-panels">
+				<div id="timer">15:00</div>
+				<div class="movie-details">
+					<h1 class="movie-title">@Model.ShowtimeDetails.Movie.Title</h1>
+					<div class="movie-info">
+						<p><strong>Start time: </strong>@Model.ShowtimeDetails.Showtime.StartTime.ToString("hh:mm")</p>
+						<p><strong>Date: </strong>@Model.ShowtimeDetails.Showtime.StartTime.ToString("yyyy-MM-dd")</p>
+						<div class="auditorium-panel"><p><strong>@Model.ShowtimeDetails.Showtime.Auditorium.Name</strong></p></div>
+					</div>
+				</div>
+				<div class="customer-details">
+					<h3>Customer Info:</h3>
+					<form id="customer-form" method="post"
+						  asp-controller="Cinema"
+						  asp-action="MovieOrder"
+						  asp-route-id="@ViewBag.ValidatedReservationId"
+						  class="customer-form">
+						<input type="hidden" name="expirationTimeMs" value="@ViewBag.ValidatedExpirationMs" />
+						<input type="hidden" name="partialTicketJson" value="@ViewBag.PartialTicketJson" />
+						<div id="name-inputs">
+							<label for="name">Name:</label>
+							<input type="text" id="name" name="Name" required />
+						</div>
+						<div id="email-inputs">
+							<label for="email">Email:</label>
+							<input type="email" id="email" name="Email" required />
+						</div>
+						<div id="phone-inputs">
+							<label for="phone">Phone:</label>
+							<input type="tel" id="phone" name="PhoneNo" required />
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="order-section">
+			<div class="order-panel">
+				<div class="my-order">
+					<h2>My Order</h2>
+					<button type="submit" form="customer-form" class="confirm-btn">Confirm</button>
+				</div>
+
+				<div class="total-sum">
+					<h3>Total Sum:</h3>
+					<div class="price">@Model.TicketDetails.TotalPrice DKK</div>
+				</div>
+
+				<div class="ticket-details">
+					<div class="types-details">
+						<h3>Selected Types:</h3>
+						<div class="ticket-types-grid">
+							@foreach (var ttq in Model.TicketDetails.PricePerTicketType)
+							{
+								<div class="ticket-type-card" id="ticket-card-type-@ttq.Key.TicketType">
+									<div class="ticket-type-info">
+										<p id="ticket-type"><strong>Type:</strong> @ttq.Key.TicketType</p>
+										<p id="ticket-quantity"><strong>Quantity:</strong> @ttq.Key.Quantity</p>
+										<p id="type-price"><strong>Price:</strong> @(ttq.Value * ttq.Key.Quantity) DKK</p>
+									</div>
+								</div>
+							}
+						</div>
+					</div>
+
+					<div class="seating-details">
+						<h3>Seating:</h3>
+						<div class="tickets-grid">
+							@foreach (var seat in Model.TicketDetails.BookedSeats)
+							{
+								<div class="ticket-card" id="ticket-card-row-@seat.RowNo-SeatNo-@seat.SeatNo">
+									<div class="ticket-info">
+										<p id="ticket-row"><strong>Row:</strong> @seat.RowNo</p>
+										<p id="ticket-seat"><strong>Seat:</strong> @seat.SeatNo</p>
+										<p id="seat-type"><strong>Type:</strong> @seat.SeatType</p>
+									</div>
+								</div>
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

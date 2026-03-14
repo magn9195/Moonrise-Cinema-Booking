@@ -1,0 +1,30 @@
+﻿@{
+	ViewData["Title"] = "Index page";
+}
+
+@model IEnumerable<CinemaWebService.Models.GetCityZipcodeCS>
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/indexPage.css" />
+}
+
+<div class="auditorium-selection-class">
+	<div class="page-section" id="bios-upper-page">
+		<div class="logo-section">
+			<img src="~/img/FrontPageLogo.png" alt="Bios Logo" class="bios-logo" />
+		</div>
+	</div>
+	<div class="page-section" id="bios-lower-page">
+		<div class="content-wrapper">
+			<div class="city-selection">
+				<h1 class="page-title">Vælg by</h1>
+				<div class="city-grid">
+					@foreach(var city in Model)
+					{
+						<a class="city-button" asp-controller="Cinema" asp-action="MovieList" asp-route-city="@city.City">@city.City</a>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

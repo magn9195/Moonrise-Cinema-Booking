@@ -1,0 +1,177 @@
+﻿#seat-page-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    padding-bottom: 100px;
+}
+
+.page-section {
+}
+
+#seats-movie-title-container {
+    text-align: center;
+    margin: 1.5vw;
+    display: flex;
+    justify-content: center;
+}
+
+    #seats-movie-title-container h2 {
+        font-size: 2.2vw;
+        font-weight: 600;
+        background-color: #00000070;
+        border: 2px solid #000;
+        color: white;
+        padding: 15px 20px 20px 20px;
+        border-radius: 20px;
+    }
+
+#seats-second-upper-page {
+    display: flex;
+    justify-content: center;
+    gap: 8vw;
+}
+
+#seats-dropdown-section {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+    gap: 15px;
+    background-color: #00000070;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+    #seats-dropdown-section label {
+        color: white;
+        font-weight: 600;
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    #seats-dropdown-section div label {
+        color: white;
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
+    #seats-dropdown-section select {
+        border-radius: 10px;
+        font-size: 1vw;
+        text-align: center;
+    }
+
+#seats-legend-container {
+    display: flex;
+    gap: 20px;
+    padding: 1vw 1vw 0.2vw 1vw;
+    align-items: center;
+    background-color: #00000070;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+    #seats-legend-container div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    #seats-legend-container img {
+        width: 2vw;
+    }
+
+    #seats-legend-container p {
+        font-size: 0.8vw;
+        font-weight: 600;
+        color: white;
+    }
+
+#seats-center-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vw;
+}
+
+#seat-grid-main {
+    background-color: #00000035;
+    border: 3px solid #00000070;
+    border-radius: 20px;
+    padding: 10px 30px;
+}
+
+    #seat-grid-main .row {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    #seat-grid-main .spanContainer {
+        position: relative;
+        isolation: isolate;
+        margin: 0.1vw;
+        padding: 0.2vw;
+        width: 3vw;
+    }
+
+    #seat-grid-main .seat-svg {
+        display: block;
+        width: 2.5vw;
+        height: auto;
+        max-width: 60px;
+        min-width: 15px;
+        cursor: pointer;
+    }
+
+        #seat-grid-main .seat-svg path {
+            transition: fill 0.1s ease-in-out;
+        }
+
+            #seat-grid-main .seat-svg path.hover-out {
+                transition: fill 0.3s ease-in-out;
+            }
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 15%;
+    max-width: 1200px;
+    min-width: 235px;
+    margin: 0 auto;
+    border-radius: 20px 20px 0 0;
+    background-color: #00000070;
+    border: 2px solid #000 !important;
+    z-index: 100;
+}
+
+#seats-button-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    #seats-button-section a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    #seats-button-section .button {
+        padding: 8px 20px;
+        margin: 10px;
+        font-size: 1.6vw;
+        font-weight: 600;
+        border-radius: 20px;
+        background-color: #1d1d1dbc;
+        color: white;
+        border: 3px solid black;
+        transition: border 0.2s, background-color 0.2s;
+    }
+
+        #seats-button-section .button:hover {
+            background-color: #828282bc;
+            border: 3px solid #565656;
+        }

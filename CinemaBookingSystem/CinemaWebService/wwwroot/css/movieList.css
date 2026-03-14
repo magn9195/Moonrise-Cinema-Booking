@@ -1,0 +1,138 @@
+﻿#movie-list-content {
+	margin-top: 20px;
+	position: relative;
+	min-height: 100vh;
+}
+
+	#movie-list-content::before {
+		content: '';
+		width: 106%;
+		height: 103%;
+		left: -3%;
+		top: -3%;
+		z-index: -1;
+		position: absolute;
+		background-color: #0000004a;
+		border-left: 3px solid #000;
+		border-right: 3px solid #000;
+		border-bottom: 3px solid #000;
+	}
+
+.filter {
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	width: 25%;
+	font-size: 20px;
+	border-radius: 10px;
+}
+
+.filters {
+	justify-content: center;
+	gap: 20px;
+}
+
+	.filters form {
+		font-size: 1rem;
+	}
+
+	.filters form option {
+		font-size: 1rem;
+	}
+
+	.filters form input {
+		font-size: 1.2rem;
+	}
+
+	.city-title {
+		color: white;
+		text-align: center;
+		font-size: 2rem;
+		font-weight: 1000;
+		letter-spacing: 2px;
+		margin-bottom: 20px;
+	}
+
+.movie-filter-title {
+	color: white;
+	text-align: center;
+	font-size: 1.4rem;
+	font-weight: 600;
+	letter-spacing: 2px;
+	margin-bottom: 20px;
+}
+
+.moviefilter {
+	background: linear-gradient(135deg, #a7a7a7 0%, #8361a5 100%);
+	border: 3px #b2aeb6ff solid;
+	padding: 25px;
+	margin-bottom: 40px;
+	border-radius: 10px;
+}
+
+.resetFilter {
+	font-size: 20px;
+	text-align: center;
+}
+
+.moviefilter option {
+	padding: 25px;
+	margin-bottom: 30px;
+	border-radius: 10px;
+}
+
+.moviesContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 20px;
+}
+
+	.moviesContainer:has(.no-content-wrapper:only-of-type) {
+		gap: 20px;
+		display: flex;
+	}
+
+.moviesChild {
+	transition: transform 0.2s;
+}
+
+	.moviesChild img {
+		width: 100%;
+		height: auto;
+		border-radius: 10px;
+		transition: box-shadow 0.3s;
+		box-shadow: 1px 1px 8px black;
+	}
+
+	.moviesChild:hover img {
+		box-shadow: 1px 1px 26px black;
+	}
+
+.moviesChild p {
+	font-size: 20px;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.moviesChild a {
+	color: white;
+	text-decoration: none;
+}
+
+.moviesChild:hover, .moviesChild:focus, .moviesChild:active {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.no-content-wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.no-content-text {
+	color: white;
+	font-size: 2.5rem;
+}

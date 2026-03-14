@@ -1,0 +1,83 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, #808080 0%, #413344 100%);
+    font-family: Lato;
+}
+
+/* Custom Navigation Styles */
+.navbar {
+    border: 0 !important;
+    border-radius: 0;
+    margin-bottom: 0 !important;
+    height: 3vw !important;
+}
+
+.navbar-custom {
+    background: linear-gradient(135deg, #a7a7a7 0%, #8058a7 100%);
+    box-shadow: -10px 2px 30px rgba(0,0,0,0.5) !important;
+}
+
+.navbar .container-fluid {
+    position: relative;
+}
+
+.navbar-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.nav-logo {
+    max-height: 2.5vw;
+    width: auto;
+}
+
+.navbar-custom .navbar-brand {
+    color: #ffffff;
+    text-shadow: 1px 1px black;
+    transition: color 0.4s ease;
+    font-weight: bold;
+    font-size: 1.5vw;
+}
+
+        .navbar-custom .navbar-brand:hover {
+            color: #9359cb !important;
+        }
+
+.navbar-custom .nav-link {
+    color: #ffffff;
+    margin: 0 0.5rem;
+    transition: color 0.4s ease;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+        .navbar-custom .nav-link:hover {
+            color: #8058a7 !important;
+        }
+
+.footer {
+    border: 0 !important;
+}

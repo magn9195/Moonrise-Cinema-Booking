@@ -1,0 +1,7 @@
+This project builds a cinema booking system with the use of C# (CSharp). This project is separated into 3 different sections: Rest API, MVC Web Service and an administrative program built with Windows Forms.
+
+The Rest API is built to carry the back-end for the rest of the system. The other parts of the system NEED the API to be running and working. This creates a degree of separation, such as keeping the back-end logic out of the users reach, as well as keeping variables less public. A REST API, if setup through an accessable server, can be used to provide a centralized back-end accessable through a connection to said server. This would allow the back-end to be completely absent from the local environment, instead relegating it to an external server storage.
+
+The MVC Web Service is built to be the main customer interface, this is where the customer will be able to book their tickets to a chosen movie. This will be the primary interface of the system, which means that the UI must be user-friendly, fast and asthetically pleasing. The usability of this web service will determine customer retention rate way more than something out-of-sight like the administrative panel or the API.
+
+The Administrative Panel is built to handle control of the back-end. This is where you'd be able to CRUD movies, when the movies are shown, where they will take place, so on. These tools will be essential for the cinema company to be able to run their day-to-day operations.

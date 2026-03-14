@@ -1,0 +1,280 @@
+﻿
+
+#Movie-Showtime-Page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 40px;
+    padding: 20px 0 0 0;
+    max-width: 1400px;
+    background: #00000070;
+    border-left: 3px solid #000;
+    border-right: 3px solid #000;
+    border-bottom: 3px solid #000;
+}
+
+#img-upper-left-page {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+
+    #img-upper-left-page .poster {
+        width: 100%;
+        max-height: 600px;
+        max-width: 400px;
+        aspect-ratio: 2/3;
+        background: #4a4a4a;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        box-shadow: 2px 2px 20px black;
+    }
+
+#title-upper-right-page {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items:flex-start;
+    justify-content: center;
+}
+
+    #title-upper-right-page h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        color: White;
+        font-weight: bold;
+        text-align: center;
+    }
+
+.movie-info-box {
+    background: #00000070;
+    border: 2px solid #000;
+    padding: 30px 10px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+    .movie-info-box-inner {
+        display: flex;
+        transition: transform 0.4s ease;
+    }
+
+        .movie-info-box-inner div {
+            min-width: 100%;
+            max-width: 100%;
+            flex-shrink: 0;
+            text-align: left;
+            padding: 0 20px;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+        .movie-info-box-inner p {
+            margin: 0;
+            font-size: 16px;
+            color: white;
+        }
+
+        .movie-info-box-inner strong {
+            color: white;
+            font-weight: 700;
+        }
+
+.info-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #000000aa;
+    border: none;
+    color: white;
+    font-size: 22px;
+    padding: 2px 10px 6px;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+    .info-arrow.left {
+        left: -10px;
+    }
+
+    .info-arrow.right {
+        right: -10px;
+    }
+
+#title-upper-right-page .movie-video-box {
+    margin-top: 20px;
+    width: 400px;
+    height: 220px;
+}
+
+#title-upper-right-page iframe {
+    width: 400px;
+    height: 220px;
+    box-shadow: 2px 2px 20px black;
+}
+
+#showtimes-lower-page {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+
+.showtime-frame {
+    border-radius: 12px;
+}
+
+    .showtime-frame h2 {
+        margin: 0 0 25px 0;
+        font-size: 2.5rem;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+.cinema-card {
+    padding: 0px 10px 10px 10px;
+}
+
+    .cinema-card:nth-child(2n-1) {
+        border-top: 2px solid black;
+        background: #825da75b
+    }
+
+.cinema-card-title {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 10px;
+    background: #00000038;
+    border-start-start-radius: 20px;
+    border-start-end-radius: 20px;
+    border-bottom: solid 2px black;
+}
+
+.showtime-grid {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.date-column {
+    min-width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #00000038;
+    padding: 10px 10px 40px 10px;
+}
+
+    .date-column:nth-child(2n) {
+        border-left: 2px solid #000000c0;
+        border-right: 2px solid #000000c0;
+    }
+
+    .date-column h3 {
+        font-size: 1.3rem;
+        color: white;
+        text-align: center;
+        font-weight: 600;
+        margin: 10px 0 10px 0;
+    }
+
+.showtime-card {
+    background-color: #0d790583;
+    border: 3px solid #2faa2e;
+    padding: 15px 0;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border 0.2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+    .showtime-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #2faa2e;
+        border: 3px solid #2faa2e;
+    }
+
+#showtimes-lower-page a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.showtime-card p {
+    margin: 0;
+    color: white;
+}
+
+.showtime-card .auditorium {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.showtime-card .start-time {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.showtime-card .type {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+@media (max-width: 968px) {
+    #Movie-Showtime-Page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    #img-upper-left-page {
+        grid-column: 1;
+        grid-row: 1;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    #title-upper-right-page {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    #showtimes-lower-page {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .showtime-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .showtime-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #title-upper-right-page h1 {
+        font-size: 2rem;
+    }
+}

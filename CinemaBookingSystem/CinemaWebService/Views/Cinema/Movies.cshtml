@@ -1,0 +1,102 @@
+﻿@{
+	ViewData["Title"] = "Movie Details";
+}
+
+@model CinemaWebService.Views.ViewModels.DetailsVM
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/movieDetails.css" />
+}
+
+@section Scripts {
+	<script src="~/js/DetailsLogic.js"></script>
+}
+
+<div class="body" id="Movie-Showtime-Page">
+	<div class="page-section" id="img-upper-left-page">
+		@if (Model.ImageURLs != null && Model.ImageURLs.Any())
+		{
+			<img class="poster image" id="movie-IMG-details" src="@Model.ImageURLs.First()" />
+		}
+		else
+		{
+			<div class="poster placeholder">Movie IMG</div>
+		}
+	</div>
+
+	<div class="page-section" id="title-upper-right-page">
+		<h1>@Model.Movie.Title</h1>
+
+		<div class="movie-info-box">
+			<button class="info-arrow left" onclick="slideInfo(-1)">&#8249;</button>
+			<div class="movie-info-box-inner">
+				<div id="details-firstpage">
+					<p><strong>Film Length:</strong> @(Model.Movie.Duration / 60) hr @(Model.Movie.Duration % 60) min</p>
+					<p><strong>Age Limit:</strong> PG-@Model.Movie.AgeLimit</p>
+					<p><strong>Genre:</strong> @string.Join(", ", Model.Movie.Genres)</p>
+					<p><strong>Premiere:</strong> @Model.Movie.ReleaseDate.ToString("yyyy-MM-dd")</p>
+				</div>
+				<div id="details-secondpage">
+					<p><strong>Director:</strong> @Model.Movie.Director</p>
+					<p id="resume-p"><strong>Resume:</strong> @Model.Movie.Resume</p>
+				</div>
+				<div id="details-thirdpage">
+					<p><strong>Main Actor:</strong> @Model.Movie.MainActor</p>
+					<p><strong>Language:</strong> @Model.Movie.Language</p>
+					<p><strong>Subtitles:</strong> @Model.Movie.Subtitles</p>
+				</div>
+			</div>
+			<button class="info-arrow right" onclick="slideInfo(1)">&#8250;</button>
+		</div>
+
+		<div class="movie-video-box">
+			<iframe src="https://www.youtube.com/embed/@Model.Movie.TrailerYoutubeID" allowfullscreen></iframe>
+		</div>
+	</div>
+	<div class="page-section" id="showtimes-lower-page">
+		<div class="showtime-frame">
+			<h2>Showtimes</h2>
+
+			@foreach(var cinema in Model.Showtimes.Keys)
+			{
+				<div class="cinema-card" id="cinema-card-@cinema.CinemaID">
+					<h3 class="cinema-card-title" id="card-title-@cinema.CinemaID">@cinema.Name</h3>
+					@if (Model.Showtimes != null && Model.Showtimes.Any())
+					{
+						<div class="showtime-grid">
+							@if (@Model.Showtimes.TryGetValue(cinema, out var showtimeCinema)) {
+								@foreach (var dateGroup in showtimeCinema.GroupBy(s => s.StartTime.Date).OrderBy(g => g.Key))
+								{
+									<div class="date-column">
+										<h3>@dateGroup.Key.ToString("dd/MM")</h3>
+										@foreach (var showtime in dateGroup.OrderBy(s => s.StartTime))
+										{
+											<a asp-controller="Cinema" asp-action="SeatPage" asp-route-movieID="@Model.Movie.MovieID" asp-route-showtimeID="@showtime.ShowtimeID">
+												<div class="showtime-card">
+													<p class="auditorium">
+														@showtime.Auditorium.Name
+													</p>
+													<p class="start-time">
+														@showtime.StartTime.ToString("HH:mm")
+													</p>
+													<p class="type">
+														@showtime.ShowType
+													</p>
+												</div>
+											</a>
+										}
+									</div>
+								}
+							}
+						</div>
+					}
+					else
+					{
+						<p>No showtimes available.</p>
+					}
+				</div>
+			}
+
+		</div>
+	</div>
+</div>

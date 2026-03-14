@@ -1,0 +1,94 @@
+﻿@using CinemaWebService.Models.Enum.EnumHelper
+
+@{
+	ViewData["Title"] = "Seat Page";
+}
+
+@model CinemaWebService.Views.ViewModels.ShowtimeDetailsVM
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/seatPage.css" />
+}
+
+@section Scripts {
+	<script src="~/js/SeatLogic.js"></script>
+	<script>
+		const seatData = @Html.Raw(Json.Serialize(Model.Showtime.SeatAvailability));
+		const movieTitle = '@Model.Movie.Title';
+		const SeatStatus = @Html.Raw(EnumSerializer.GetSeatStatusJson());
+		const SeatType = @Html.Raw(EnumSerializer.GetSeatTypeJson());
+
+		@if (TempData["SuccessMessage"] != null)
+		{
+						<text>
+						alert('@Html.Raw(TempData["SuccessMessage"])');
+						</text>
+		}
+
+		@if (TempData["ErrorMessage"] != null)
+		{
+						<text>
+						alert('@Html.Raw(TempData["ErrorMessage"])');
+						</text>
+		}
+	</script>
+}
+
+<div class="body" id="seat-page-body">
+	<div class="page-section" id="seats-upper-page">
+		<div class="text-container" id="seats-movie-title-container">
+			<h2 class="movie-title" id="seats-movie-title">
+				@Model.Movie.Title
+			</h2>
+		</div>
+		<div class="page-sub-section" id="seats-second-upper-page">
+			<div class="dropdown-section" id="seats-dropdown-section">
+				<label for="seats-showtime-dropdown">Ticket Type:</label> <br />
+				<div class="ticketType-adult">
+					<input type="radio" id="tt-adult" name="ticketType" value="Adult" />
+					<label for="tt-adult">Adult</label>
+				</div>
+				<div class="ticketType-child">
+					<input type="radio" id="tt-child" name="ticketType" value="Child" />
+					<label for="tt-child">Child</label>
+				</div>
+				<div class="ticketType-student">
+					<input type="radio" id="tt-student" name="ticketType" value="Student" />
+					<label for="tt-student">Student</label>
+				</div>
+				<div class="ticketType-senior">
+					<input type="radio" id="tt-senior" name="ticketType" value="Senior" />
+					<label for="tt-senior">Senior</label>
+				</div>
+			</div>
+			<div class="legend-container" id="seats-legend-container">
+				<div><img src="~/img/seatBlack.svg" /><p>Available</p></div>
+				<div><img src="~/img/seatWhite.svg" /><p>Selected</p></div>
+				<div><img src="~/img/seatRed.svg" /><p>Unavailable</p></div>
+				<div><img src="~/img/seatYellow.svg" /><p>Reserved</p></div>
+				<div><img src="~/img/seatBlue.svg" /><p>Handicap</p></div>
+			</div>
+		</div>
+	</div>
+	<div class="page-section" id="seats-center-page">
+		<div class="seat-grid" id="seat-grid-main">
+			@* Seats will be dynamically generated here *@
+		</div>
+	</div>
+	<form id="booking-form" method="post" asp-controller="Cinema" asp-action="SeatPage" style="display: none;">
+		@Html.AntiForgeryToken()
+		<input type="hidden" name="showtimeID" value="@Model.Showtime.ShowtimeID" />
+		<input type="hidden" name="movieID" value="@Model.Movie.MovieID" />
+		<div id="seat-inputs-container"></div>
+	</form>
+</div>
+<footer class="border-top footer text-muted">
+	<div class="button-section" id="seats-button-section">
+		<a asp-controller="Cinema" asp-action="Movies" asp-route-movieID="@Model.Movie.MovieID" asp-route-city="@Model.Cinema.Address.CityZipCode.City" class="button">
+			Back
+		</a>
+		<button type="button" onclick="bookSeats()" class="button">
+			Book
+		</button>
+	</div>
+</footer>
